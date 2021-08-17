@@ -6,33 +6,33 @@ const WAGE_PER_HOUR = 20;
 const NUM_OF_WORKING_DAYS = 20;
 const MAX_HRS_IN_MONTH = 160;
 let empDailyWageArray = new Array();
+let empDailyWageMap = new Map();
 
 function calcDailyWage(empHrs){
     return empHrs * WAGE_PER_HOUR;
 }
 
 function getWorkingHours(empCheck){
-    switch (empCheck) 
-    {
-        case IS_PART_TIME:
-            return PART_TIME_HOURS;
-            break;
-        case IS_FULL_TIME:
-            return FULL_TIME_HOURS;
-            break;
-        default:
-            return 0;
-    }
+switch (empCheck) {
+    case IS_PART_TIME:
+        return PART_TIME_HOURS;
+        break;
+    case IS_FULL_TIME:
+        return FULL_TIME_HOURS;
+        break;
+    default:
+        return 0;
+}
 }
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
-while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS)
-{
+while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() *3);
     let empHrs = getWorkingHours(empCheck);
     totalEmpHrs += empHrs;
     empDailyWageArray.push(calcDailyWage(empHrs));
+    empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
 }
 
 let empWage = totalEmpHrs * WAGE_PER_HOUR;
@@ -82,3 +82,6 @@ function totalDaysWorked(numOfDays, dailyWage){
     return numOfDays;
 }
 console.log("Number of days employee worked : "+ empDailyWageArray.reduce(totalDaysWorked, 0));
+
+console.log(empDailyWageMap);
+console.log("Emp wage map total wages : "+ Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
