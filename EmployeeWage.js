@@ -11,8 +11,8 @@ else
     console.log("Employee is Absent");
 }
 
-console.log("------------------UC-2--AND--UC-3-----------------------");
-// Calculating Daily Employee Wage based on part time or full time work...........
+console.log("------------------UC-4-----------------------");
+// Calculating Wages for a Month assuming 20 Working Days in a Month..........
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
 const PART_TIME_HOURS = 4;
